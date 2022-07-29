@@ -1,6 +1,23 @@
 from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
+
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///market.db'
+db = SQLAlchemy(app)
+
+
+class Item(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(length=30), nullable=False, unique=True)
+    price = db.Column(db.Integer(), nullable=False)
+    barcode = db.Column(db.String(length=30), nullable=False, unique=True)
+    desc = db.Column(db.String(length=1024), nullable=False)
+
+    def __repr__(self):
+        return str(self.name)
+
+
 
 @app.route('/starter')
 def hello_world():
@@ -20,10 +37,5 @@ def home_page():
 
 @app.route('/market')
 def market_page():
-    items = [
-        {'id':1, 'name': 'Product Name 1', 'barcode':'asd213asdd2vggxz', 'price':201},
-        {'id':2, 'name': 'Product Name 2', 'barcode':'asd213asdd2vggxz', 'price':202},
-        {'id':3, 'name': 'Product Name 3', 'barcode':'asd213asdd2vggxz', 'price':203},
-        {'id':4, 'name': 'Product Name 4', 'barcode':'asd213asdd2vggxz', 'price':204},
-    ]
+    items = Item.query.all()
     return render_template('market.html', page_name='market', items=items)

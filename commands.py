@@ -7,3 +7,11 @@
 
 # debug mode = on
 "export FLASK_DEBUG=1"
+
+
+# SQLALCHEMY ORM
+"db.create_all()"
+"Model.query.all()"
+"Model.query.filter_by()"
+"db.session.add(model_instance)"
+"db.session.commit"
