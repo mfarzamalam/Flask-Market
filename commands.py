@@ -14,4 +14,5 @@
 "Model.query.all()"
 "Model.query.filter_by()"
 "db.session.add(model_instance)"
-"db.session.commit"
+"db.session.commit()"
+"db.session.rollback()"
