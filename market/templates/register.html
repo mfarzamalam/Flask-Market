@@ -8,20 +8,41 @@
 
     <div class="container text-center">
         <form method="POST" class='form-register pt-5' style="color:white">
+            {{ form.hidden_tag() }}
             {{ form.username.label() }}:
             {{ form.username(class='form-control', placeholder='Enter Your Username') }}
+            {% if errors.username %}
+                {% for error in errors.username %}
+                    <p style="color:red;"> {{ error }} </p>
+                {% endfor %}
+            {% endif %}
             <br>
 
             {{ form.email.label() }}:
             {{ form.email(class='form-control', placeholder='Enter Your Email Address') }}
+            {% if errors.email %}
+                {% for error in errors.email %}
+                    <p style="color:red;"> {{ error }} </p>
+                {% endfor %}
+            {% endif %}
             <br>
 
             {{ form.password1.label() }}:
             {{ form.password1(class='form-control', placeholder='Enter Your Password') }}
+            {% if errors.password1 %}
+                {% for error in errors.password1 %}
+                    <p style="color:red;"> {{ error }} </p>
+                {% endfor %}
+            {% endif %}
             <br>
 
             {{ form.password2.label() }}:
             {{ form.password2(class='form-control', placeholder='Enter Your Password Again') }}
+            {% if errors.password2 %}
+                {% for error in errors.password2 %}
+                    <p style="color:red;"> {{ error }} </p>
+                {% endfor %}
+            {% endif %}
             <br>
             
             {{ form.submit(class='btn btn-lg btn-block btn-primary') }}
