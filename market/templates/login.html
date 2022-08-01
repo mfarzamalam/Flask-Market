@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock title %}
+
+{% block heading %}Login To Your Account{% endblock heading %}
+
+{% block content %}
+
+    <div class="container text-center">
+        <form method="POST" class='form-register pt-5' style="color:white">
+            {{ form.hidden_tag() }}
+            {{ form.username.label() }}:
+            {{ form.username(class='form-control', placeholder='Enter Your Username') }}
+            <br>
+
+            {{ form.password.label() }}:
+            {{ form.password(class='form-control', placeholder='Enter Your Password') }}
+            <br>
+
+            {% if errors %}
+                {% for error in errors %}
+                    <p style="color:red;"> {{ error }} </p>
+                {% endfor %}
+            {% endif %}
+            
+            {{ form.submit(class='btn btn-lg btn-block btn-primary') }}
+
+        </form>
+    </div>
+
+{% endblock content %}

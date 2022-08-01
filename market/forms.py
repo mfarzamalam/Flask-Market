@@ -16,9 +16,14 @@ class RegisterForm(FlaskForm):
         if user_email:
             raise ValidationError("Email already exists")
 
-
     username = StringField(label='Username', validators=[Length(min=3), DataRequired()])
     email = StringField(label='Email', validators=[Email(), DataRequired()])
     password1 = PasswordField(label='Enter Password', validators=[Length(min=8), DataRequired()])
     password2 = PasswordField(label='Confirm Password', validators=[EqualTo('password1'), DataRequired()])
     submit = SubmitField(label='Create Account')
+
+
+class LoginForm(FlaskForm):
+    username = StringField(label='Username', validators=[DataRequired()])
+    password = PasswordField(label='Enter Password', validators=[DataRequired()])
+    submit = SubmitField(label='Login')
